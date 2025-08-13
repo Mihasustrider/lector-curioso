@@ -1,0 +1,119 @@
+{% extends 'core/base.html' %}
+{% block title %}- Dashboard{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+    <h1 class="h2">Dashboard Gerencial</h1>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-6 col-lg-4">
+        <div class="card text-white shadow-sm h-100" style="background: linear-gradient(45deg, #0d6efd, #00c3ff);">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title">VENTAS DEL DÍA</h5>
+                    <p class="card-text fs-2 fw-bold">${{ total_ventas_hoy }}</p>
+                </div>
+                <i class="bi bi-currency-dollar fs-1 opacity-50"></i>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-6 col-lg-4">
+        <div class="card text-white bg-warning shadow-sm h-100">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title">STOCK BAJO</h5>
+                    <p class="card-text fs-2 fw-bold">{{ stock_bajo_count }} Libros</p>
+                </div>
+                <i class="bi bi-exclamation-triangle-fill fs-1 opacity-50"></i>
+            </div>
+        </div>
+    </div>
+     <div class="col-md-6 col-lg-4">
+        <div class="card text-white bg-success shadow-sm h-100">
+            <div class="card-body d-flex justify-content-between align-items-center">
+                <div>
+                    <h5 class="card-title">NUEVOS CLIENTES</h5>
+                    <p class="card-text fs-2 fw-bold">8</p>
+                </div>
+                <i class="bi bi-person-plus-fill fs-1 opacity-50"></i>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="row mt-4 g-4">
+    <div class="col-md-7">
+        <div class="card shadow-sm">
+            <div class="card-header">
+                <h5 class="card-title mb-0">Ventas por Categoría (Semana)</h5>
+            </div>
+            <div class="card-body">
+                <canvas id="salesChart"></canvas>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="card shadow-sm">
+             <div class="card-header">
+                <h5 class="card-title mb-0">Libros Más Vendidos</h5>
+            </div>
+            <div class="card-body">
+                <table class="table table-hover">
+                    <tbody>
+                        {% for libro in libros_mas_vendidos %}
+                        <tr>
+                            <td><i class="bi bi-book me-2 text-primary"></i>{{ libro }}</td>
+                            <td class="text-end fw-bold">{{ forloop.counter|add:15 }}</td>
+                        </tr>
+                        {% endfor %}
+                         <tr>
+                            <td><i class="bi bi-book me-2 text-primary"></i>1984</td>
+                            <td class="text-end fw-bold">12</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
+
+{% block extra_js %}
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+<script>
+    Chart.defaults.color = '#adb5bd'; // Color de fuente para modo oscuro
+    const ctx = document.getElementById('salesChart');
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Ficción', 'Historia', 'Ciencia', 'Biografía', 'Infantil', 'Misterio'],
+            datasets: [{
+                label: 'Ventas',
+                data: [65, 59, 80, 81, 56, 55],
+                backgroundColor: 'rgba(0, 123, 255, 0.6)',
+                borderColor: 'rgba(0, 123, 255, 1)',
+                borderWidth: 1,
+                borderRadius: 5
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true,
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                },
+                x: {
+                    grid: { color: 'rgba(255, 255, 255, 0.1)' }
+                }
+            },
+            responsive: true,
+            plugins: {
+                legend: {
+                    display: false
+                }
+            }
+        }
+    });
+</script>
+{% endblock %}

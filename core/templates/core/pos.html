@@ -1,0 +1,38 @@
+{% extends 'core/base.html' %}
+{% block title %}Punto de Venta{% endblock %}
+
+{% block content %}
+<h1 class="mb-4">Punto de Venta (POS)</h1>
+<div class="row">
+    <div class="col-md-7">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Transacción Actual</h5>
+                <ul class="list-group mb-3">
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        El Hobbit
+                        <span>$250.00</span>
+                    </li>
+                     <li class="list-group-item d-flex justify-content-between align-items-center">
+                        Fahrenheit 451
+                        <span>$180.00</span>
+                    </li>
+                </ul>
+                <h4>Total: <span class="text-success">$430.00</span></h4>
+                <button class="btn btn-primary w-100 mt-3">Cobrar</button>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-5">
+        <div class="input-group mb-3">
+            <input type="text" class="form-control" placeholder="Escanear o buscar producto...">
+            <button class="btn btn-outline-secondary" type="button">Buscar</button>
+        </div>
+        <ul class="list-group">
+            {% for producto in productos|slice:":5" %}
+             <li class="list-group-item list-group-item-action" style="cursor: pointer;">{{ producto.titulo }}</li>
+            {% endfor %}
+        </ul>
+    </div>
+</div>
+{% endblock %}

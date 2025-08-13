@@ -1,0 +1,56 @@
+{% extends 'core/base.html' %}
+{% block title %}- Portal del Cliente{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+    <h1 class="h2">Bienvenido de nuevo, {{ cliente_nombre }}</h1>
+</div>
+
+<div class="row g-4">
+    <div class="col-md-12">
+        <div class="card shadow-sm">
+            <div class="card-header bg-primary text-white">
+                <h5 class="mb-0"><i class="bi bi-clock-history me-2"></i>Tu Historial de Compras</h5>
+            </div>
+            <div class="card-body">
+                <ul class="list-group list-group-flush">
+                    {% for libro in historial_compras %}
+                    <li class="list-group-item d-flex justify-content-between align-items-center">
+                        {{ libro.titulo }}
+                        <span class="badge bg-secondary rounded-pill">Comprado: 2024-07-10</span>
+                    </li>
+                    {% endfor %}
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="mt-4 pt-3 border-top">
+    <h2 class="h3 mb-3">Recomendado para Ti</h2>
+    <div class="row row-cols-1 row-cols-md-3 row-cols-lg-5 g-3">
+        {% for libro in recomendaciones %}
+        <div class="col">
+            <div class="card h-100 text-center shadow-sm product-card">
+                <img src="https://via.placeholder.com/150x220.png/212529/ffffff?text=Libro" class="card-img-top" alt="{{ libro.titulo }}">
+                <div class="card-body p-2">
+                    <h6 class="card-title small">{{ libro.titulo }}</h6>
+                    <p class="card-text fw-bold text-primary">${{ libro.precio_venta }}</p>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+<style>
+    .product-card {
+        cursor: pointer;
+        transition: transform 0.2s, box-shadow 0.2s;
+    }
+    .product-card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 0.5rem 1rem rgba(0,0,0,.15)!important;
+    }
+</style>
+{% endblock %}

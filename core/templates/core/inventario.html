@@ -1,0 +1,93 @@
+{% extends 'core/base.html' %}
+{% block title %}- Inventario{% endblock %}
+
+{% block content %}
+<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom border-secondary">
+    <h1 class="h2">Gestión de Inventario</h1>
+    <div class="btn-toolbar mb-2 mb-md-0">
+        <button type="button" class="btn btn-primary">
+            <i class="bi bi-plus-circle-fill me-2"></i>Añadir Producto
+        </button>
+    </div>
+</div>
+
+<div class="card shadow-sm">
+    <div class="card-body">
+        <div class="input-group mb-3">
+             <span class="input-group-text"><i class="bi bi-search"></i></span>
+            <input type="text" class="form-control" placeholder="Buscar en inventario...">
+        </div>
+        <div class="table-responsive">
+            <table class="table table-hover align-middle">
+                <thead>
+                    <tr>
+                        <th>SKU</th>
+                        <th>Título</th>
+                        <th>Autor</th>
+                        <th class="text-end">Precio Venta</th>
+                        <th class="text-center">Stock</th>
+                        <th class="text-center">Acciones</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td class="fw-bold text-primary">FIC-001</td>
+                        <td>El Viento Sabe mi Nombre</td>
+                        <td>Isabel Allende</td>
+                        <td class="text-end">$450.00</td>
+                        <td class="text-center"><span class="badge bg-success">25</span></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">CFI-001</td>
+                        <td>Dune</td>
+                        <td>Frank Herbert</td>
+                        <td class="text-end">$380.00</td>
+                        <td class="text-center"><span class="badge bg-success">15</span></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">HIS-001</td>
+                        <td>Sapiens: De animales a dioses</td>
+                        <td>Yuval Noah Harari</td>
+                        <td class="text-end">$520.00</td>
+                        <td class="text-center"><span class="badge bg-warning">5</span></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">FAN-001</td>
+                        <td>El Señor de los Anillos</td>
+                        <td>J.R.R. Tolkien</td>
+                        <td class="text-end">$600.00</td>
+                        <td class="text-center"><span class="badge bg-danger">2</span></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="fw-bold text-primary">NOV-001</td>
+                        <td>Cien Años de Soledad</td>
+                        <td>Gabriel García Márquez</td>
+                        <td class="text-end">$480.00</td>
+                        <td class="text-center"><span class="badge bg-success">18</span></td>
+                        <td class="text-center">
+                            <button class="btn btn-sm btn-outline-secondary"><i class="bi bi-pencil-fill"></i></button>
+                            <button class="btn btn-sm btn-outline-danger"><i class="bi bi-trash-fill"></i></button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}
